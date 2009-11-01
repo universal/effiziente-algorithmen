@@ -1,22 +1,63 @@
 \input{../shared/header}
 \begin{document}
-\printAuthor \\
-\section*{1.4 Induktive Definition}
-Sei $d$ eine Funktion $d: F_{AL} \rightarrow \mathbb{N}$, die zu jeder aussagenlogischen Formel $\psi \in F_{AL}$ die Länge von $\psi$ liefert.
+\section*{1.1 O-Notation und Kostenmaß}
 
-\noindent
-\textbf{1. Basiszuordnung}\\
-Für $i \in \mathbb{N}$\\
-$d(0) = d(1) = d(X_i) = 0$\\
-\textbf{2. Induktionsregeln}\\
-$d(\neg\psi) = 1 + d(\psi)$\\
-Für $\ast \in \{\wedge, \vee, \rightarrow,\leftrightarrow \}$\\
-$d((\varphi \ast \psi)) = 1 + max(d(\varphi), d(\psi))$
+\textbf{$2^{k+1} = 2 \cdot 2^k$}
 
-\section*{1.5 Modellierung}
+\begin{lstlisting}
+        read X1
+        X0 <- X1
+        if X0 > 0 goto init
+        write 1
+        goto stop
+init    X2 <- 2
+loop    X0 <- X1
+        X0 <- X0 -1
+        X1 <- X0
+        if X0 = 0 goto end
+        X0 <- X2
+        X0 <- 2 * X0
+        X2 <- X0
+        goto loop
+end     write X2
+stop    halt    
+\end{lstlisting}
 
-\subsection*{(a)}
-Definiere die Formel $\varphi$ so, dass jedem Objekt genau eine Menge zugeordnet ist:\\
+\textbf{$2^{2k} = (2^k)^2$}
+
+
+\begin{lstlisting}
+        read X1
+        X0 <- X1
+        if X0 > 0 goto init
+        write 1
+        goto stop
+init    X0 <- X1
+        X0 <- X0 / 2
+        X2 <- X0          (2*m anteil)
+        X0 <- 2 * X0
+        X0 <- X1 - X0
+        X3 <- X0          (rest)
+        X4 <- 2 
+        X5 <- 1
+loop    X0 <- X4
+        X0 <- X4 * X4
+        X4 <- X0
+        X0 <- X5
+        X0 <- X0 * 2
+        X5 <- X0
+        X0 <- X2 - X0
+        if X0 = 0 goto 
+        
+        
+        goto loop
+end     write X2
+stop    halt    
+\end{lstlisting}
+
+\section*{1.2 Laufzeit - Min/Max}
+
+
 
 \end{document}
 

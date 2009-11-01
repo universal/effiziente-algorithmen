@@ -4,7 +4,22 @@
 \usepackage[ngerman]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{pdfpages}
+\usepackage{stmaryrd}
+
+
 \renewcommand{\author}[1]{\newcommand{\printAuthor}{#1}}
-\title{}
+\renewcommand{\title}[1]{\newcommand{\printTitle}{#1}}
+\title{Serie 01}
 \author{Johannes Hedtrich, Nikolaus Majewski}
 \date{\today}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[LO,LE]{\printAuthor}
+\fancyhead[RO,RE]{\printTitle}
+\fancyfoot[CO,CE]{\thepage}
