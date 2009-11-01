@@ -12,11 +12,11 @@
         goto stop
 init    X2 <- 2
 loop    X0 <- X1
-        X0 <- X0 -1
+        X0 <- X0 - 1
         X1 <- X0
         if X0 = 0 goto end
         X0 <- X2
-        X0 <- 2 * X0
+        X0 <- X0 * 2
         X2 <- X0
         goto loop
 end     write X2
@@ -25,33 +25,34 @@ stop    halt
 
 \textbf{$2^{2k} = (2^k)^2$}
 
-
 \begin{lstlisting}
         read X1
         X0 <- X1
         if X0 > 0 goto init
         write 1
         goto stop
-init    X0 <- X1
-        X0 <- X0 / 2
-        X2 <- X0          (2*m anteil)
-        X0 <- 2 * X0
-        X0 <- X1 - X0
-        X3 <- X0          (rest)
-        X4 <- 2 
-        X5 <- 1
-loop    X0 <- X4
-        X0 <- X4 * X4
-        X4 <- X0
-        X0 <- X5
+init    X2 <- 2             (n)
+        X3 <- 1             (result)
+loop    X0 <- X1
+        if X0 > 0 goto inner
+        goto end
+inner   X0 <- X1
+        X0 <- X0 / 2        
+        X4 <- X0            (2er anteil)
         X0 <- X0 * 2
-        X5 <- X0
-        X0 <- X2 - X0
-        if X0 = 0 goto 
-        
-        
+        X0 <- X1 - X0       (rest)
+        if X0 > 0 goto odd
+cont    X0 <- X2
+        X0 <- X0 * X0
+        X2 <- X0
+        X0 <- X4
+        X1 <- X0
         goto loop
-end     write X2
+odd     X0 <- X3
+        X0 <- X0 * X2
+        X3 <- X0
+        goto cont
+end     write X3
 stop    halt    
 \end{lstlisting}
 
