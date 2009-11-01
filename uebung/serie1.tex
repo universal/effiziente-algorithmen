@@ -5,7 +5,7 @@
 \textbf{$2^{k+1} = 2 \cdot 2^k$}
 
 \begin{lstlisting}
-        read X1
+RAM:    read X1
         X0 <- X1
         if X0 > 0 goto init
         write 1
@@ -22,11 +22,14 @@ loop    X0 <- X1
 end     write X2
 stop    halt    
 \end{lstlisting}
+\noindent
+Einheitskostenmaß: O() \\
+Logarithmisches Kostenmaß: O()\\
 
+\noindent
 \textbf{$2^{2k} = (2^k)^2$}
-
 \begin{lstlisting}
-        read X1
+RAM:    read X1
         X0 <- X1
         if X0 > 0 goto init
         write 1
@@ -56,9 +59,42 @@ end     write X3
 stop    halt    
 \end{lstlisting}
 
+\noindent
+Einheitskostenmaß: O() \\
+Logarithmisches Kostenmaß: O()\\
+
 \section*{1.2 Laufzeit - Min/Max}
+\subsection*{a)}
+Der Algorithmus benötigt $N - 1$ Vergleiche von Elementen der Zahlenfolge.
+\subsection*{b)}
+\begin{lstlisting}[language=Ruby,numbers=right]
+def min_max2(array)
+  min, max = min_max2_sub(array, 0, array.size - 1)
+end
 
-
-
+def min_max2_sub(array, left, right)
+  diff = right - left
+  if diff == 1
+    min = max = left
+    if array[left] < array[right]
+      max = right
+    else
+      min = right
+    end
+    return [min, max]
+  else
+    if diff == 2
+      min1 = max1 = left
+      min2, max2 = min_max2_sub(array, left + 1, right)
+    else
+      min1, max1 = min_max2_sub(array, left, left + diff / 2)
+      min2, max2 = min_max2_sub(array, left+(diff/2) + 1,right)
+    end
+    min = array[min1] < array[min2] ? min1 : min2
+    max = array[max1] > array[max2] ? max1 : max2
+    return [min, max]
+  end
+end  
+\end{lstlisting}
 \end{document}
 
