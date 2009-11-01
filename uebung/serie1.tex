@@ -1,0 +1,22 @@
+\input{../shared/header}
+\begin{document}
+\printAuthor \\
+\section*{1.4 Induktive Definition}
+Sei $d$ eine Funktion $d: F_{AL} \rightarrow \mathbb{N}$, die zu jeder aussagenlogischen Formel $\psi \in F_{AL}$ die Länge von $\psi$ liefert.
+
+\noindent
+\textbf{1. Basiszuordnung}\\
+Für $i \in \mathbb{N}$\\
+$d(0) = d(1) = d(X_i) = 0$\\
+\textbf{2. Induktionsregeln}\\
+$d(\neg\psi) = 1 + d(\psi)$\\
+Für $\ast \in \{\wedge, \vee, \rightarrow,\leftrightarrow \}$\\
+$d((\varphi \ast \psi)) = 1 + max(d(\varphi), d(\psi))$
+
+\section*{1.5 Modellierung}
+
+\subsection*{(a)}
+Definiere die Formel $\varphi$ so, dass jedem Objekt genau eine Menge zugeordnet ist:\\
+
+\end{document}
+
