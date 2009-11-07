@@ -1,0 +1,48 @@
+\input{../shared/header}
+\title{Serie 02}
+
+\begin{document}
+\section*{Aufgabe 2.3}
+
+  	$ T(n) = a T(\frac{n}{c}) + b n^{k} \hspace{1cm},k \in\mathbb{N} $
+  	\newline
+  	Aufl\ouml sen ergibt:\\
+  \begin{eqnarray}
+  T(n) &=& = aT(\frac{n}{c}) + bn^{k}\\
+  &=& a ( aT(\frac{n}{c^{2}}) + b\frac{n^{k}}{c} ) + b n^{k}\\
+  &=& a (a ( aT(\frac{n}{c^{3}}) + b \frac{n^{k}}{c^{2}} ) + b \frac{n^{k}}{c} ) + b n^{k}\\
+  &=& ...\\
+  &=& bn^{k} + b \frac{n^{k}}{c}a + b \frac{n^{k}}{c^{2}}a^{2} + b \frac{n^{k}}{c^{3}}a^{3} + ...\\
+  &=& bn^{k} \sum\limits_{i=0}^{\log_{c}(n) - 1}{({\frac{a}{c}})}^{i}\\
+  \end{eqnarray}
+
+  Dadurch ergeben sich 3 F\auml lle die zu betrachten sind:\\
+
+  Fall 2: $a = c^{k}$
+  \begin{eqnarray}
+  T(n) &=& bn^{k}(log_{c}(n) - 1 + 1)\\
+  &=& bn^{k}(log_{c}(n))\\
+  &=& O (n^{k}(log_{c}(n))\\
+  \end{eqnarray}
+
+
+  Fall 2: $a < c^{k}$
+  \begin{eqnarray}
+  T(n) &=& bn^{k} \sum\limits_{i=0}^{\log_{c}(n) - 1}{({\frac{a}{c}})}^{i}\\
+  &<& bn^{k} \sum\limits_{i=0}^{\infty}{({\frac{a}{c}})}^{i} = \frac{bn^{k}}{1- \frac{a}{c}} = bn^{k} \frac{1}{1- \frac{a}{c}}\\
+  &=& O (n^{k}) \hspace{1cm}, da \quad\frac{1}{1- \frac{a}{c}} \ konst.\\
+  \end{eqnarray}
+
+
+  Fall 3: $a > c^{k}$
+  \begin{eqnarray}
+  T(n) &=& bn^{k} \sum\limits_{i=0}^{\log_{c}(n) - 1}{({\frac{a}{c}})}^{i} = bn^{k} \frac{{(\frac{a}{c})}^{log_{c}(n)- 1 +1} - 1}{\frac{a}{c} - 1}\\
+  &=& bn^{k} \frac{{(\frac{a}{c})}^{log_{c}(n)} - 1}{\frac{a}{c} - 1}\\
+  &\leq& \frac{bn^{k}}{\frac{a}{c}-1} \frac{a^{log_{c}(n)}}{c^{log_{c}(n)}} = \frac{bn^{k}}{\frac{a}{c}-1} \frac{a^{log_{c}(n)}}{c}\\
+  &=& \frac{bn^{k} a^{log_{c}(n)}}{c(\frac{a}{c} - 1)} = \frac{bn^{k} a^{log_{c}(n)}}{a- \frac{1}{c}}\\
+  &=& \frac{bn^{k} a^{log_{c}(n)}}{a - \frac{1}{c}} = \frac{b}{a - \frac{1}{c}} n^{k}a^{log_{c}(n)}\\
+  &=& O(n^{k}a^{log_{c}(n)}) \hspace{1cm}, da \frac{b}{a - \frac{1}{c}} \ konst.\\
+  &=& O(n^{k}n^{log_{c}(a)}) = O(n^{log_{c}(a)+ k} )\\ 
+  \end{eqnarray}
+\end{document}
+

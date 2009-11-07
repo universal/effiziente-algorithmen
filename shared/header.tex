@@ -9,13 +9,14 @@
 \usepackage{color}
 \usepackage{pdfpages}
 \usepackage{stmaryrd}
+\usepackage{algorithmic}
+
 \lstset{% general command to set parameter(s) 
 basicstyle=\small	% print whole listing small
 }
 
 \renewcommand{\author}[1]{\newcommand{\printAuthor}{#1}}
 \renewcommand{\title}[1]{\newcommand{\printTitle}{#1}}
-\title{Serie 01}
 \author{Johannes Hedtrich, Nikolaus Majewski}
 \date{\today}
 
@@ -25,3 +26,12 @@ basicstyle=\small	% print whole listing small
 \fancyhead[LO,LE]{\printAuthor}
 \fancyhead[RO,RE]{\printTitle}
 \fancyfoot[CO,CE]{\thepage}
+
+\newcommand{\uuml}{\"{u}}
+\newcommand{\auml}{\"{a}}
+\newcommand{\ouml}{\"{o}}
+
+\newcommand{\Uuml}{\"{U}}
+\newcommand{\Auml}{\"{A}}
+\newcommand{\Ouml}{\"{O}}
+
