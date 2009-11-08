@@ -44,5 +44,65 @@
   &=& O(n^{k}a^{log_{c}(n)}) \hspace{1cm}, da \frac{b}{a - \frac{1}{c}} \ konst.\\
   &=& O(n^{k}n^{log_{c}(a)}) = O(n^{log_{c}(a)+ k} )\\ 
   \end{eqnarray}
+  
+  
+
+\textbf{Aufgabe 2.3}\\
+\newline
+Umformen/Aufl\ouml sen ergibt:\\
+\begin{eqnarray*}
+\sum\limits_{i=0}^{n}{c_i x^i} &=& c_0 + \sum\limits_{i=1}^{n}{c_i x^i}\\
+&=& c_0 + c_1 x^1 + c_2 x^2 + c_3 x^3 + ... + c_n x^n\\
+&=& c_0 + c_1 (x) + c_2 (x * x) + c_3 (x * x * x) + ... + c_n (x * x * x * x * ... *n)\\
+\end{eqnarray*}
+Dadurch ergibt sich bei Betrachtung der Anzahl der Multiplikationen:\\
+$M$ = Multiplikation
+\begin{eqnarray*}
+&=& 0M + 1M + 2M + 3M + ... + nM\\
+&=& \frac{n (n - 1)}{2}M\\
+\end{eqnarray*}
+Offensichtlich gilt fuer die Anzahl der Additionen:\\
+$A$ = Addition
+\begin{equation*}
+= nA
+\end{equation*}
+
+Gesamt im Einheitskostenma\ss:\\
+\begin{equation*}
+= n + \frac{n (n - 1)}{2} = n + n + \frac{n^2}{2} - \frac{n}{2} = n (1 + \frac{n}{2} - \frac{1}{2}) = n(\frac{1}{2}+ \frac{n}{2})\\
+\end{equation*}
+
+\newpage
+
+Und nun der 2te Term:
+\begin{eqnarray*}
+&=& (... ((c_{n}x + c_{n - 1})x + c_{n - 2}) ...)x + c_0\\
+&=& (... ((((c_{n}x + c_{n - 1})x + c_{n - 2})x + c_{n - 3})x + c_{n - 4})x + c_{n - 5}) ...)x + c_0\\
+\end{eqnarray*}
+
+Wir l\ouml sen nun auf, indem wir die Kosten einfach "hineinschreiben"
+\begin{eqnarray*}
+&=& (... ((((1M + c_{n - 1})x + c_{n - 2})x + c_{n - 3})x + c_{n - 4})x + c_{n - 5}) ...)x + c_0\\
+&=& (... ((((1M + 1A)x + c_{n - 2})x + c_{n - 3})x + c_{n - 4})x + c_{n - 5}) ...)x + c_0\\
+&=& (... ((((1M + 1A) + 1M + 1A)x + c_{n - 3})x + c_{n - 4})x + c_{n - 5}) ...)x + c_0\\
+&=& (... ((((1M + 1A) + 1M + 1A) +1M + 1A)x + c_{n - 4})x + c_{n - 5}) ...)x + c_0\\
+&=& (... ((((1M + 1A) + 1M + 1A) +1M + 1A) + 1M + 1A) +1M + 1A) ...)x + c_0\\
+\end{eqnarray*}
+Man sieht relativ schnell am zusammenfassen, was rauskommt:
+\begin{eqnarray*}
+&=& (... ((((2M + 1A) + 1A) +1M + 1A) + 1M + 1A) +1M + 1A) ...)x + c_0\\
+&=& (... (((2M + 2A) +1M + 1A) + 1M + 1A) +1M + 1A) ...)x + c_0\\
+&=& (... (((3M + 2A) + 1A) + 1M + 1A) +1M + 1A) ...)x + c_0\\
+&=& (... ((3M + 3A) + 1M + 1A) +1M + 1A) ...)x + c_0\\
+&=& (... (4M + 4A) +1M + 1A) ...)x + c_0\\
+&=& (nM + nA)\\
+\end{eqnarray*}
+
+
+Gesamt im Einheitskostenma\ss:\\
+\begin{equation*}
+= (nM + nA) = n + n = 2n\\
+\end{equation*}
+  
 \end{document}
 
