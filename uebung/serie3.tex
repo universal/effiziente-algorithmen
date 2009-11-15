@@ -1,0 +1,41 @@
+\input{../shared/header} 
+\title{Serie 03}
+
+\begin{document} 
+\section*{Aufgabe 3.3 Knapsack}
+
+\section*{Aufgabe 3.4 Greedy-Algorithmen}
+
+\subsection*{(a)}
+
+\begin{lstlisting}[language=Ruby,numbers=right]
+class CoinDistribution
+  attr_accessor :coins
+  
+  def initialize(*available_coins)
+    self.coins = available_coins
+    self.coins.sort! {|a,b| b <=> a}
+  end
+  
+  def to_coins(amount)
+    distribution = Hash.new
+    self.coins.each do |coin|
+      count = amount / coin
+      amount -= count * coin
+      distribution[coin] = count
+      break if amount == 0
+    end
+    distribution
+  end
+end  
+\end{lstlisting}
+
+\subsection*{(b)}
+
+n/2...
+
+\subsection*{(c)}
+
+Für $W = {1,6,9}$ und $g = 14$ liefert der Algorithmus nicht das "optimale" Ergebnis, sondern: $5 * 1$ und $1 * 9$ anstatt: $2 * 6$ und $2 * 1$.
+
+\end{document}
