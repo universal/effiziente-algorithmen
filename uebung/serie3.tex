@@ -4,6 +4,26 @@
 \begin{document} 
 \section*{Aufgabe 3.3 Knapsack}
 
+Durch Anwendung des Algorithmus ergibt sich folgende Lösungstabelle $A[i,t]$:\\
+
+\begin{tabular}{ccccccccccccccccccc}
+\hline
+wi,pi & P / N & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16\\
+\hline
+4,4 & 1 & 0 & $\infty$ & $\infty$ & $\infty$ & 4 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$\\
+\hline
+3,5 & 2 & 0 & $\infty$ & $\infty$ & $\infty$ & 4 & 3 & $\infty$ & $\infty$ & $\infty$ & 7 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$\\
+\hline
+5,6 & 3 & 0 & $\infty$ & $\infty$ & $\infty$ & 4 & 3 & 5 & $\infty$ & $\infty$ & 7 & 9 & 8 & $\infty$ & $\infty$ & $\infty$ & 12 & $\infty$\\
+\hline
+2,1 & 4 & 0 & 2 & $\infty$ & $\infty$ & 4 & 3 & 5 & 7 & $\infty$ & 7 & 9 & 8 & 10 & $\infty$ & $\infty$ & 12 & 14\\
+\hline
+\end{tabular}
+
+Im Anschluss bestimmt man: $max(t)$ mit $A[n, t] <= B = 10$.
+Dies findet man in $A[4,12]$ mit $B = 10$. \\
+Ebenso kann man durch Rückwärtsrechnen die ausgewählten Items bestimmen: ${4,3,2}$.
+
 \section*{Aufgabe 3.4 Greedy-Algorithmen}
 
 \subsection*{(a)}
