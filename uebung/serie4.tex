@@ -5,6 +5,15 @@
 
 \section*{Aufgabe 4.3 Starke Zusammenhangskomponenten}
 
+\textbf{Voraussetzung: }Sei $D=(V,E)$ ein Digraph.\\
+\noindent
+\textbf{Behauptung: } Es sei r der erste Knoten, für den im Algorithmus zur Ermittlung der starken Zusammenhangskomponenten in Schritt (7) die Bedingung $T(r) =  DFS(r)$ gilt. Dann liegen neben den Knoten auf dem Stack oberhalb von r keine weiteren Knoten in der starken Zusammenhangskomponente zu r.\\
+\noindent
+\textbf{Beweis: }
+
+Annahme: Es existiert eine ausgehende Kante $e = (v,u)$ mit $DFS(v) >= DFS(r)$, $DFS(u) < DFS(r)$ und $\exists$ ein gerichteter Weg von $u$ nach $r$. Somit würden diese Knoten zur starken Zusammenhangskomponente von r gehören. Jedoch wäre dann im Backtracking $T(w) <= DFS(u) < DFS(r) = T(r)$ mit $w \in {u --> r}$ als minimale Tiefe zurück gereicht worden, und somit wäre in r $T(r) != DFS(r)$.
+
+
 \section*{Aufgabe 4.4 Tiefensuche in Digraphen}
 
 \end{document}
