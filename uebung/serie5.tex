@@ -1,0 +1,25 @@
+\input{../shared/header} 
+\title{Serie 05}
+
+\begin{document} 
+
+\section*{Aufgabe 5.3 Matroide II}
+
+\textbf{Voraussetzung: }
+
+Sei $U=\{x_1, \cdots, x_{|U|}, \mathfrak{I}\}$ ein Matroid und $w: U \rightarrow \mathbb{N}$ eine beliebige Gewichtsfunktion. Sei $W(X) = \sum\{w(x) : x \in X\}$. Der Algorithmus sei wie in der Aufgabe definiert.
+
+\noindent
+\textbf{Behauptung: } 
+
+Der Algorithmus findet eine unabhängige Menge $S$ mit maximalen Gesamtgewicht $W(S)$.
+
+\noindent
+\textbf{Beweis: }
+Sei $s_i$ mit $s_i \in S$ das im i-ten Schritt vom Algorithmus gewählte Element.
+Annahme: Es existiert eine Menge $T = \{x_{t_1}, \cdots x_{t_{|T|}}\}$ mit $W(T)$ optimal und $W(T) > W(S)$. 
+Die Lösung des Algorithmus und die optimale Lösung T sind inklusionsmaximal, also $|S| = |T|$. Sei o.B.d.A $x_{t_k} \geq x_{t_{k+1}}$ mit $ 1 \leq k \leq |T|$. Es existiert also ein $t_j \in T$ mit $w(t_j) > w(s_j), s \in S$. Jedoch hätte der Algorithmus im j-ten Schritt eben dieses Element $t_j$ statt $s_j$ gewählt, da $S' \cup t_j$ mit $S' = \{s_i \in S | i < j\}$ nach Definition auch in $\mathfrak{I}$ enthalten ist. $\lightning$
+
+%\section*{Aufgabe 4.4 Tiefensuche in Digraphen}
+
+\end{document}

@@ -11,9 +11,9 @@
 \noindent
 \textbf{Beweis: }
 
-Annahme: Es existiert eine ausgehende Kante $e = (v,u)$ mit $DFS(v) >= DFS(r)$, $DFS(u) < DFS(r)$ und $\exists$ ein gerichteter Weg von $u$ nach $r$. Somit würden diese Knoten zur starken Zusammenhangskomponente von r gehören. Jedoch wäre dann im Backtracking $T(w) <= DFS(u) < DFS(r) = T(r)$ mit $w \in {u --> r}$ als minimale Tiefe zurück gereicht worden, und somit wäre in r $T(r) != DFS(r)$.
+Annahme: Es existiert eine ausgehende Kante $e = (v,u)$ mit $DFS(v) \geq DFS(r)$, $DFS(u) < DFS(r)$ und es existiert ein gerichteter Weg von $u$ nach $r$. Somit würden diese Knoten zur starken Zusammenhangskomponente von r gehören. Jedoch wäre dann im Backtracking $T(w) \leq DFS(u) < DFS(r) = T(r)$ mit $w \in \{u --> r\}$ als minimale Tiefe zurück gereicht worden, und somit wäre in r $T(r) != DFS(r)$.
 
 
-\section*{Aufgabe 4.4 Tiefensuche in Digraphen}
+%\section*{Aufgabe 4.4 Tiefensuche in Digraphen}
 
 \end{document}
