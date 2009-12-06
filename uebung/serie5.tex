@@ -20,6 +20,36 @@ Sei $s_i$ mit $s_i \in S$ das im i-ten Schritt vom Algorithmus gewählte Element
 Annahme: Es existiert eine Menge $T = \{x_{t_1}, \cdots x_{t_{|T|}}\}$ mit $W(T)$ optimal und $W(T) > W(S)$. 
 Die Lösung des Algorithmus und die optimale Lösung T sind inklusionsmaximal, also $|S| = |T|$. Sei o.B.d.A $x_{t_k} \geq x_{t_{k+1}}$ mit $ 1 \leq k \leq |T|$. Es existiert also ein $t_j \in T$ mit $w(t_j) > w(s_j), s \in S$. Jedoch hätte der Algorithmus im j-ten Schritt eben dieses Element $t_j$ statt $s_j$ gewählt, da $S' \cup t_j$ mit $S' = \{s_i \in S | i < j\}$ nach Definition auch in $\mathfrak{I}$ enthalten ist. $\lightning$
 
-%\section*{Aufgabe 4.4 Tiefensuche in Digraphen}
+\clearpage
+
+\section*{Aufgabe 5.4 Transitive Reduktion}
+\textbf{Voraussetzung: }
+
+Sei $D = (V,E)$ ein gerichteter, endlicher, azyklischer, schleifenfreier Digraph. 
+
+\noindent
+\textbf{Behauptung: } 
+
+Für azyklische Graphen ist die transitive Reduktion eindeutig bestimmt durch:\\ 
+$E^{'} = \bigcap \{ E^{''} \subseteq E : E^{''^*} = E^{^*} \}$
+
+\noindent
+\textbf{Beweis: }
+
+(1) Es existiert ein Pfad von $u$ nach $v$ in $D$ genau dann, wenn ein solcher in $D^{'}$ existiert, also $E^{^*} = E^{'^*}$.
+
+Aus $E^{''^*} = E^{^*}$ folgt das für jedes Paar $(u,v)$ für das ein Pfad in $E$ existiert, auch einer in $E^{''}$ vorhanden ist. Dieser Pfad kann auf 3 Möglichkeiten entstanden sein: 
+
+\begin{itemize}
+
+	\item Der einzige Pfad ist die direkte Kante $(u,v)$. Dann ist diese offensichtlich in allen $E^{''}$ enthalten, und somit auch im Schnitt über diese.
+	\item Es existiert keine direkte Kante $(u,v)$, sondern lediglich ein Pfad von $u$ nach $v$ über Zwischenknoten $k_i$. Dann gilt für die Paare $(u, k_1), \cdots, (k_j, v)$ das für diese in allen $E^{''}$ ein Pfad enthalten sein muss, der rekursiv wiederum eine der 3 Möglichkeiten erfüllt.
+	\item Es existiert sowohl die direkte Kante $(u,v)$ als auch ein Pfad von $u$ nach $v$ über Zwischenknoten $k_i$. Dann gilt für die Paare $(u, k_1), \cdots, (k_j, v)$ das für diese in allen $E^{''}$ ein Pfad enthalten sein muss, der rekursiv wiederum eine der 3 Möglichkeiten erfüllt, lediglich die direkte Kante $(u,v)$ muss nicht in $E^{''}$ enthalten sein.
+\end{itemize}
+
+(2) $|E^{'}|$ ist minimal.
+
+Annahme: $|E^{'}|$ ist nicht minimal. Dann existiert eine Kante $k \in E^{'}$ sodass $(E^{'}\backslash k)^{^*} = E^{^*}$. Da $E^{'} \subseteq E^{''} : E^{''^*} = E^{^*}$, $k \in E^{''}$. Zudem gilt auch $(E^{'}\backslash k) \subseteq (E^{''}\backslash k)$, somit gilt auch $(E^{''}\backslash k)^{^*} = E^{^*}$. Dann wäre jedoch $E^{''}\backslash k$ in der Schnittmenge enthalten, und somit $k$ nicht im Resultat. $\lightning$
+
 
 \end{document}

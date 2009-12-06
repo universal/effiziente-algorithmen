@@ -1,0 +1,57 @@
+\input{../shared/header} 
+\title{Serie 06}
+
+\begin{document} 
+
+  \section*{Aufgabe 6.3 Eulerkreise II}
+  
+  \textbf{Voraussetzung: } Sei $G=(V,E)$ ein Multigraph.
+  
+  \noindent
+  \textbf{Behauptung: } Der Algorithmus zur Bestimmung eines Eulerkreises läuft in $O(|V| + |E|)$.
+
+  \noindent
+  \textbf{Beweis: }
+  
+  Wähle folgende Datenstrukturen:
+  Adjazenzliste: doppelt verkettete Liste mit Speicherung der Größe
+  Kreis: einfach verkettete Liste mit Pointer auf Start-, End- und Zwischenknoten $w_i$
+  
+  \begin{enumerate}
+    \item Test ob $G$ zusammenhängend ist lässt sich mit DFS lösen $\Rightarrow O(|V| + |E|)$.\\
+          Test auf geraden Grad: Wenn man zu jedem Knoten die Adjazenzliste mit deren Größe speichert, ist der Test in $O(|V|)$ möglich. Insgesamt also Schritt(1) in $O(|V| + |E|)$.
+    \item Bestimmung eines Kreises $K_i = (l_1, \cdots, l_k, l_1)$: Speichert man die Adjazenzliste als verkettete Liste, die nach aufsteigenden Knotenindizes sortiert ist, so ist das Auswählen einer unbesuchten Kante in $O(1)$ möglich. Ebenso das markieren der Kante als besucht, hierzu wird die Kante einfach entfernt, was wiederum in $O(1)$ möglich ist. In diesem Schritt werden genau $k$ Kanten betrachtet. Da der Algorithmus nur unbesuchte Kanten betrachtet, werden über alle ''Aufrufe'' von Schritt(2) genau $\sum_{K_i} |E_{K_i}| = |E|$ Kanten betrachtet, somit ist dieser Schritt insgesamt in $O(E)$.
+    \item Speichert man in Schritt(2) die Anzahl der besuchten Kanten, so ist dieser Schritt in $O(1)$ möglich.
+    \item Zur Bestimmung des nächsten Startknotens $w$ läuft man auf dem bisher gefunden Kreis entlang, und setzt den Pointer für $w$ entsprechend mit um. Dies geschieht solange, bis man einen Knoten findet, der noch unbesuchte Kanten besitzt. Die Überprüfung ob ein Knoten unbesuchte Kanten besitzt, lässt sich in $O(1)$ lösen. Da die später gefundenen Kreise nie vor $w$ auf dem bisher gefunden Kreis enden können, sind diese Schritte auch durch $|E|$ beschränkt. Somit laufen alle ''Aufrufe'' dieses Schritts ingesamt in $O(|E|)$
+    \item Da der Start- und Endknoten des hinzuzufügenden Kreises gerade der Zwischenknoten $w$ ist, ist das zusammenfügen von 2 Teilkreisen in $O(1)$ möglich, hierzu entfernt man einfach aus dem hinzuzufügenden Kreis den Startknoten und setzt den Pointer aufs nächste Element von $w$ auf den folgenden Knoten.
+  \end{enumerate}
+  
+  Da sich alle Teilschritte über alle ''Aufrufe'' in $O(|V|)$, $O(|E|)$ oder $O(|V| + |E|)$, ist auch der gesamte Algorithmus in $O(|V| + |E|)$.
+\clearpage
+  \section*{Aufgabe 6.4 Eulerkreise III}
+  
+  \textbf{Voraussetzung: } Sei $G=(V,E)$ ein Graph und $L(G) = (E, L(E))$ der durch $\{e_1,e_2\} \in L(E) \Leftrightarrow e_1,e_2 \in E, |e_1 \cap e_2| = 1$ definierte Linegraph. Sei zudem $G$ eulersch.
+  
+  \noindent
+  \textbf{Behauptung: } $G$ eulersch $\Rightarrow$ $L(G)$ ist eulersch und hat einen Hamiltonkreis.
+  
+  \noindent
+  \textbf{Beweis:}
+  
+  $G$ eulersch $\Rightarrow L(G)$ hat einen Hamiltonkreis.\\
+  
+  Sei $K_G$ ein zu $G$ gehörender Eulerkreis. Da die Knoten in $L(G)$ gerade den Kanten in $G$ und die Kanten gerade den möglichen Wegstücken $v_1,v_2,v_3$ in $G$ entsprechen, so ergibt sich aus $K_G$ direkt der Hamiltonkreis in $L(G)$.
+  
+  $G$ eulersch $\Rightarrow$ $L(G)$ ist eulersch.\\
+
+  Zerlegt man $G$ in die kleinstmöglichen Kreise 
+  $K_i = (l_1, \cdots, l_k) | l_1 = l_k \wedge \forall l_i \not \exists l_j l_i = l_j | 1 < i,j < k$,
+   so ist die Vereinigung dieser Kreise ein Eulerkreis. Für einen Kreis $K_i$ und dem zugehörigen Graphen $G_{K_i}$ ist $L(G_{K_i})$ offensichtlich wiederum eulersch. Somit bleibt noch zu betrachten was an der Verbindungsstelle zweier solcher Kreise $K_1, K_2$ passiert:  Sei $k$ der Schnittknoten, $k_1, k_2$ die zu $K_1$ und $k_3, k_4$ die zu $K_2$ gehörenden Knoten. Somit sind die zu betrachtenden Kanten $e_1 = (k_1, k), e_2 = (k_2, k), e_3 = (k, k_3), e_4 = (k, k_4)$. So ergibt sich im zugehörigen folgende Kantenmenge $l_1 = (e_1,e_2), l_2 = (e_1, e_3), l_3 = (e_1, e_4), l_4 = (e_2, e_3), l_5 = (e_2,e_4), l_6 = (e_3, e_4)$. Hiervon gehören die Kanten $l_1$ und $l_6$ schon zu eulerschen Teilkreisen in $L(G)$. Die restlichen Kanten bilden auch einen Eulerkreis, nämlich: $l_2, l_4, l_5, l_3$. Da die Vereinigung von Eulerkreisen wiederum eulersch ist, ist $L(G)$ eulersch.
+  
+  
+  
+
+
+
+
+\end{document}
