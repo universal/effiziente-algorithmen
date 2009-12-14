@@ -1,0 +1,38 @@
+\input{../shared/header} 
+\title{Serie 07}
+
+\begin{document} 
+
+  \section*{Aufgabe 7.3 Matrizen}
+  \textbf{Voraussetzung: } Seien $A,B,C$ $n \times n$- Matrizen. Für $k \leq n$ definieren wir die obere linke Teilmatrix als $(a_{ij})_{1 \leq i,j \leq k}$ und die untere rechte Teilmatrix als $(a_{ij})_{n-k+1 \leq i,j \leq n}$.  
+  \noindent
+  \textbf{Behauptung: } 
+  \begin{enumerate}
+    \item $(A^TB^T) = (BA)^T$
+    \item Sind $A$ und $B$ symmetrisch, so auch $A^{-1}$ (falls definiert) und $A+B$
+    \item Sind $A$ und $B$ positiv definit, so auch $A^{-1}$ und $A+B$
+    \item $A^TA$ ist symmetrisch und positiv definit
+    \item Ist $A$ positiv definit, so auch alle oberen linken und unteren rechten Teilmatrizen von A.
+  \end{enumerate}
+
+  \noindent
+  \textbf{Beweis: }
+  
+  \subsubsection*{$(A^TB^T) = (BA)^T$}
+  
+  Seien $1 \leq i,j \leq n$. Dann ist $(A^TB^T)_{ij} = \sum^{n}_{k=1} A^T_{ik} B^T_{kj} = \sum^{n}_{k=1} A_{ki} \cdot B_{jk}  = \sum^{n}_{k=1} B_{jk} \cdot A_{ki} = (BA)_{ji} = (BA)^T_{ij}$.
+
+  \subsubsection*{Ist $A$ symmetrisch, so auch $A^{-1}$}
+  Für $1 \leq i,j \leq n$ ist $A_{ij} =  A_{ji}$. Zudem ist $AA^{-1} = I$, also $I_{ij} = I_{ji}$. 
+  
+  $I_{ij}$ ergibt sich aus $\sum^{n}_{k=1} A_{ik} \cdot A^{-1}_{kj} = \sum^{n}_{k=1} A_{ki} \cdot A^{-1}_{kj}$.
+  
+  $I_{ji}$ ergibt sich aus $\sum^{n}_{k=1} A_{jk} \cdot A^{-1}_{ki} = \sum^{n}_{k=1} A_{kj} \cdot A^{-1}_{ki}$.
+  
+  \subsubsection*{Sind $A$ und $B$ symmetrisch, so auch $A+B$}
+  
+  Sei $C = A + B$. Für $1 \leq i,j \leq n$ ist $C_{ij} = A_{ij} + B_{ij} = A_{ji} + B_{ji}$ = $C_{ji}$.
+  
+  
+  
+\end{document}
