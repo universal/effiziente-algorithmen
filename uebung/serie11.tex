@@ -1,0 +1,54 @@
+\input{../shared/header} 
+\usepackage{program}
+\title{Serie 09}
+
+\begin{document} 
+
+  \section*{Aufgabe 11.3 2Sat}
+  \textbf{Voraussetzung: } Sei $\mathcal{M}$ die 2-Klauselmenge einer Formel in KNF in der jede Klausel nur zwei Literale enthält.
+
+  \noindent
+  \textbf{Algorithmus:}
+  \begin{program}
+  \mbox{DP-Sat(M)}
+  \text{Vorbedingung: M Klauselmenge ohne tautologischen Klauseln}
+  \WHILE M \neq \emptyset \text{ und } \emptyset \notin M%
+  \END
+  \BEGIN
+    \text{wähle} X_i \in |vars|(M) \neq \emptyset
+    M' = M \cup \{K \cup K' : K \dot{\cup} \{X_i\} \in M \text{und} K' \dot{\cup} \{\neg X_i\} \in M\}
+    M'' = \{ K \in M': X_i \notin |vars|(K)\}
+    M = \{ K \in M'' : K \text{nicht tautologisch} \}
+  \END
+  \IF \emptyset \in M \do
+    \text{return unerfüllbar}
+  \END
+  \IF \emptyset \notin M \do
+    \text{return erfüllbar}
+  \END
+  \end{program}   
+
+  
+  \noindent
+  \textbf{Behauptung: } Für 2-Klauselmengen ist die Laufzeit des DP-Algorithmus polynomiell in der Anzahl der Variablen. D.h., das Erfüllbarkeitsproblem ist für 2-Klauselmengen in Polynomzeit lösbar.
+  
+  \noindent
+  \textbf{Beweis: }
+  
+  Sei $m = vars(\mathcal{M})$. Die Menge $m$ wird in jedem Schleifendurchlauf um Eins verringert, allerdings kann sich die Anzahl der Klauseln(und deren Länge) durch Ausführen eines Schleifendurchlaufs drastisch(quadratisch) erhöhen. Somit wird die Schleife maximal $m$-mal durchlaufen. Eine einmalige Ausführung des Schleifendurchlaufs benötigt eine Laufzeit, die grob geschätzt polynomiell in $N = \sum_{K \in \mathcal{M}} \origbar K \origbar$. Der Algorithmus verändert die Eigenschaft, dass $\mathcal{M}$ eine 2-Klauselmenge ist nicht. Somit ist $N$ beschränkt durch die Anzahl der 2-Klauseln, deren Variablen sich unter den Variablen in $vars(\mathcal{M})$ befinden. Es gibt eine 0-Klausel dieser Art, $2m$ 1-Klauseln dieser Art und $2m \times (2m - 1)$ 2-Klauseln dieser Art, die keine 1-Klauseln sind. Insgesamt gilt also $N \leq 1+ 2m + 2m(2m - 1)$, wobei letzteres $4m^2 + 1$ ist. Hieraus folgt die Behauptung.
+ 
+  \section*{Aufgabe 11.4 Monotone SAT}
+  \textbf{Voraussetzung: } SAT ist NP-vollständig. Sei $F$ eine Formel.
+  
+  \noindent
+  \textbf{Behauptung: } SAT ist auch dann noch NP-vollständig, wenn in jeder Klausel nur negierte oder nur unnegierte Variablen vorkommen.
+  
+  \noindent
+  \textbf{Beweis: }
+  
+  Annahme: Es existiert ein Algorithmus $A \in P$ für Monotone SAT.
+  
+  Benenne jede negierte Variable in $F$ von $X_i$ in $NX_i$ um. Füge $F$ zwei weitere Klauseln hinzu: $\{ X_i \vee NX_i \}$ und $\{ \neg X_i \vee \neg NX_i \}$. Somit kommen in jeder Klausel der Formel nur negierte oder nur unnegierte Variablen vor. Somit wäre auch allgemeines SAT  $\in P$. $\lightning$
+  
+  
+\end{document}

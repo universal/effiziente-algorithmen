@@ -1,0 +1,48 @@
+\input{../shared/header} 
+\title{Serie 10}
+
+\begin{document} 
+
+  \section*{Aufgabe 10.3 (WEIGHTED MAXCUT)}
+  \textbf{Voraussetzung: } Sei $G = (V,E)$ ein Graph. Sei $w(e) \in \mathbb{Q}_+$ Kantengewicht.
+  
+  \noindent
+  \textbf{gesucht: } eine Partition $(S, V\\S)$ der Knotenmenge mit maximaler Summe von Kantengewichten im Schnitt.
+  
+  \noindent
+  \textbf{Alg.: }
+  
+  $S := \emptyset$\\
+  while( $\exists v \in V$ so dass das verschieben von v von einer Seite zur anderen Seite im Schnitt dessen Wert erhöht)\\
+  do (verschiebe einen solchen Knoten $v \in V$ zur anderen Seite)\\
+  end
+
+  \noindent
+  \textbf{Behauptung: } Der Algorithmus liefert zu jedem Graphen G und Kantengewichten w einen Schnitt, für dessen Größe k gilt $k \geq \frac{1}{2} OPT$.
+  
+  \noindent
+  \textbf{Beweis: }
+  
+  Sei $m(v) = \sum_{ e = (v, v_1) || (v_1, v)} w(e)$ die Summe der der Gewichte der Kanten eines Knotens.
+  Es sei $(S, V\\S)$ der vom Algorithmus berechnete Schnitt. Dann gilt f.a $v \in V$, dass mindestens $\frac{1}{2} m(v)$ im Schnitt liegt. Somit ist $k \geq \frac{1}{2} \sum_{e \in E} w(e)$. Es gilt $OPT \leq \sum_{e \in E} w(e)$. Somit gilt $k \geq \frac{1}{2} OPT$.
+  
+  \section*{Aufgabe 10.4 (BIN PACKING)}
+  \textbf{Voraussetzung: } Seien $a_1, \cdots , a_n \in ]0,1[$ Objektgrößen.
+  
+  \noindent
+  \textbf{gesucht: } eine Packung der Objekte in möglichst wenig Bins der Kapazität 1.
+  
+  \noindent
+  \textbf{Algorithmus: } 
+  Füge die Objekte nacheinander in den jeweils ersten passenden Bin, falls kein solches existiert, füge es in ein neues Bin ein.
+  
+  \noindent
+  \textbf{Behauptung: } Der Algorithmus benötigt höchstens $3OPT$ Bins. 
+  
+  \noindent
+  \textbf{Beweis: }
+    
+  Zu jedem Zeitpunkt während des Befüllens der Bins ist immer höchstens einer nicht ganz halb voll, denn der Algorithmus würde für ein Objekt der Größe $<= \frac{1}{2}$ kein neues Bin aufmachen, sondern lediglich möglicherweise für ein Objekt der Größe $> \frac{1}{2}$. 
+  
+  Hat man nun $k$ Bins, sind wenigstens $k - 1$ mehr als halb voll, also $\sum_{i}^{n} a_i > \frac{k - 1}{2}$. Da $\sum_{i}^{n} a_i \leq OPT$ gilt: $2OPT > k-1$, also $k < 2OPT + 1 <= 3OPT$.
+\end{document}
